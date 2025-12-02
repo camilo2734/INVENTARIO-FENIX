@@ -2,9 +2,10 @@ import React, { useState, useMemo } from 'react';
 import { Product, Ingredient, RecipeItem, CostBreakdown } from '../types';
 import { calculateProductCost } from '../services/calculationService';
 import { analyzeProductCosts } from '../services/geminiService';
+import { generateCostPDF } from '../services/pdfService';
 import { Card } from './ui/Card';
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
-import { ArrowLeft, Plus, AlertCircle, Sparkles, Zap, TrendingUp } from 'lucide-react';
+import { ArrowLeft, Plus, AlertCircle, Sparkles, Zap, TrendingUp, Download } from 'lucide-react';
 import { formatCurrency } from '../constants';
 
 interface Props {
@@ -310,6 +311,14 @@ export const CalculatorView: React.FC<Props> = ({ product, ingredients, onUpdate
                       className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-orange-500"
                     />
                   </div>
+
+                  <button 
+                    onClick={() => generateCostPDF(product, breakdown, ingredients)}
+                    className="w-full py-3 bg-orange-600 hover:bg-orange-700 text-white rounded-xl font-bold flex items-center justify-center gap-2 transition-colors shadow-lg shadow-orange-900/20"
+                  >
+                    <Download size={20} />
+                    Descargar PDF
+                  </button>
                </div>
             </div>
           </div>
