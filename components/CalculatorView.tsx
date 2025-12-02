@@ -248,7 +248,7 @@ export const CalculatorView: React.FC<Props> = ({ product, ingredients, onUpdate
                     <Zap size={18} className="text-orange-500" />
                     Eficiencia de Producción
                   </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                      <div>
                       <label className="block text-xs text-slate-500 mb-1">Unidades por Paquete</label>
                       <input type="number" className="w-full border border-slate-200 rounded-md p-2" value={product.unitsPerPack} onChange={e => onUpdateProduct({...product, unitsPerPack: parseFloat(e.target.value)})} />
@@ -257,9 +257,24 @@ export const CalculatorView: React.FC<Props> = ({ product, ingredients, onUpdate
                       <label className="block text-xs text-slate-500 mb-1">Unidades / Hora (Labor)</label>
                       <input type="number" className="w-full border border-slate-200 rounded-md p-2" value={product.unitsPerHour} onChange={e => onUpdateProduct({...product, unitsPerHour: parseFloat(e.target.value)})} />
                     </div>
-                    <div>
-                      <label className="block text-xs text-slate-500 mb-1">Tamaño Lote (Energía)</label>
-                      <input type="number" className="w-full border border-slate-200 rounded-md p-2" value={product.batchSize} onChange={e => onUpdateProduct({...product, batchSize: parseFloat(e.target.value)})} />
+                    <div className="md:col-span-2 space-y-2">
+                      <label className="block text-sm font-medium text-slate-700">Unidades Individuales por Sesión de Producción</label>
+                      <input 
+                        type="number" 
+                        placeholder="Ej: 100 deditos/piezas (NO paquetes)"
+                        className="w-full border border-slate-200 rounded-md p-2" 
+                        value={product.batchSize} 
+                        onChange={e => onUpdateProduct({...product, batchSize: parseFloat(e.target.value)})} 
+                      />
+                      <p className="text-xs text-slate-500 leading-relaxed">
+                        ¿Cuántas UNIDADES INDIVIDUALES (deditos, empanadas, etc) produces en una sesión de trabajo? Este número se usa para dividir el costo de gas/electricidad. Ejemplo: si produces 100 deditos y gastas $5.000 en gas = $50 por dedito.
+                      </p>
+                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 text-xs text-yellow-800 flex gap-2 items-start mt-2">
+                         <span className="shrink-0 text-base">💡</span>
+                         <p>
+                           <strong>Importante:</strong> Ingresa unidades INDIVIDUALES producidas, no paquetes. Si produces 100 deditos que luego empacarás en bandejas de 6, ingresas 100 (no 16 paquetes).
+                         </p>
+                      </div>
                     </div>
                   </div>
                 </div>
