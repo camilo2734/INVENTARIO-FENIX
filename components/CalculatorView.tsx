@@ -309,7 +309,7 @@ export const CalculatorView: React.FC<Props> = ({ product, ingredients, onUpdate
                        <span className="font-bold text-orange-400">{product.targetMargin}%</span>
                     </label>
                     <input 
-                      type="range" min="5" max="80" step="5" 
+                      type="range" min="1" max="99" step="1" 
                       value={product.targetMargin} 
                       onChange={(e) => onUpdateProduct({...product, targetMargin: parseInt(e.target.value)})}
                       className="w-full h-2 bg-slate-600 rounded-lg appearance-none cursor-pointer accent-orange-500"
