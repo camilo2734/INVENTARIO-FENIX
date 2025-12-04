@@ -43,7 +43,7 @@ export const IngredientsView: React.FC<Props> = ({ ingredients, setIngredients }
       <div className="flex justify-between items-center">
         <div>
           <h2 className="text-2xl font-bold text-slate-900">Panel de Insumos</h2>
-          <p className="text-slate-500">Gestiona los precios de materia prima, empaque y mano de obra.</p>
+          <p className="text-slate-500">Gestiona los precios de materia prima y empaque.</p>
         </div>
         <button 
           onClick={() => setIsAdding(true)}
@@ -96,8 +96,6 @@ export const IngredientsView: React.FC<Props> = ({ ingredients, setIngredients }
               >
                 <option value="raw">Materia Prima</option>
                 <option value="packaging">Empaque</option>
-                <option value="labor">Mano de Obra</option>
-                <option value="energy">Energía/Gas</option>
               </select>
             </div>
             <div className="flex gap-2">
@@ -114,12 +112,12 @@ export const IngredientsView: React.FC<Props> = ({ ingredients, setIngredients }
 
       <div className="grid grid-cols-1 gap-4">
         {/* Group by category for cleaner look */}
-        {['raw', 'packaging', 'labor', 'energy'].map(cat => {
+        {['raw', 'packaging'].map(cat => {
            const items = ingredients.filter(i => i.category === cat);
            if (items.length === 0) return null;
            
            const catTitles: Record<string, string> = { 
-             raw: 'Materia Prima', packaging: 'Empaques', labor: 'Mano de Obra', energy: 'Servicios / Indirectos' 
+             raw: 'Materia Prima', packaging: 'Empaques'
            };
 
            return (

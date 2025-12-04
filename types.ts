@@ -11,7 +11,7 @@ export interface Ingredient {
   name: string;
   cost: number;
   unit: UnitType;
-  category: 'raw' | 'packaging' | 'labor' | 'indirect' | 'energy';
+  category: 'raw' | 'packaging' | 'indirect' | 'energy'; // Removed 'labor'
 }
 
 export interface RecipeItem {
@@ -28,8 +28,7 @@ export interface Product {
   packagingRecipe: RecipeItem[]; // Ingredients required for the PACK (box, label, bag)
   
   // Production variables
-  unitsPerHour: number; // For labor calculation
-  batchSize: number; // For energy/gas calculation per batch
+  laborCostPerPack: number; // Direct payment per pack produced
   
   // Financials
   targetMargin: number; // Percentage (e.g., 30%)

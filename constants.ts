@@ -27,12 +27,6 @@ export const DEFAULT_INGREDIENTS = [
   { id: '10', name: 'Jamón Ahumado', cost: 26000, unit: UnitType.KG, category: 'raw' },
   { id: '11', name: 'Ricotta / Requesón', cost: 15000, unit: UnitType.KG, category: 'raw' },
   
-  // Labor (Hourly rate based on Min Wage + Social Security ~1.8M / 240h)
-  { id: 'lab1', name: 'Mano de Obra (Operario)', cost: 7500, unit: UnitType.HOUR, category: 'labor' },
-  
-  // Energy/Services
-  { id: 'eng1', name: 'Gas / Electricidad (Lote Promedio)', cost: 5000, unit: UnitType.BATCH, category: 'energy' },
-  
   // Packaging
   { id: 'pkg1', name: 'Bolsa Plástica Transparente x50', cost: 150, unit: UnitType.UNIT, category: 'packaging' },
   { id: 'pkg2', name: 'Bolsa Plástica Transparente x100', cost: 200, unit: UnitType.UNIT, category: 'packaging' },
@@ -47,7 +41,7 @@ export const DEFAULT_PRODUCTS = [
   // --- TEQUEÑOS ---
   {
     id: 'p1', name: 'Tequeñón Full Queso', presentation: 'Bandeja x6 (Desayuno)', unitsPerPack: 6,
-    unitsPerHour: 100, batchSize: 200, targetMargin: 40,
+    laborCostPerPack: 1200, targetMargin: 40,
     recipe: [
       { ingredientId: '1', quantity: 0.035 }, // 35g Cheese
       { ingredientId: '2', quantity: 0.030 }, // 30g Flour
@@ -57,7 +51,7 @@ export const DEFAULT_PRODUCTS = [
   },
   {
     id: 'p2', name: 'Tequeño Fiesta', presentation: 'Bolsa x20', unitsPerPack: 20,
-    unitsPerHour: 150, batchSize: 500, targetMargin: 35,
+    laborCostPerPack: 2500, targetMargin: 35,
     recipe: [
       { ingredientId: '1', quantity: 0.015 }, // 15g Cheese
       { ingredientId: '2', quantity: 0.018 }, // 18g Flour
@@ -67,7 +61,7 @@ export const DEFAULT_PRODUCTS = [
   },
   {
     id: 'p3', name: 'Tequeño Fiesta', presentation: 'Caja x100 (Mayor)', unitsPerPack: 100,
-    unitsPerHour: 150, batchSize: 500, targetMargin: 30,
+    laborCostPerPack: 10000, targetMargin: 30,
     recipe: [
       { ingredientId: '1', quantity: 0.015 },
       { ingredientId: '2', quantity: 0.018 },
@@ -77,7 +71,7 @@ export const DEFAULT_PRODUCTS = [
   },
   {
     id: 'p4', name: 'Tequeño Guayaba y Queso', presentation: 'Bandeja x12', unitsPerPack: 12,
-    unitsPerHour: 120, batchSize: 200, targetMargin: 40,
+    laborCostPerPack: 1500, targetMargin: 40,
     recipe: [
       { ingredientId: '1', quantity: 0.012 }, 
       { ingredientId: '7', quantity: 0.010 }, // Guayaba
@@ -89,7 +83,7 @@ export const DEFAULT_PRODUCTS = [
   // --- EMPANADAS ---
   {
     id: 'p5', name: 'Empanada Operada (Carne)', presentation: 'Paquete x5', unitsPerPack: 5,
-    unitsPerHour: 60, batchSize: 100, targetMargin: 45,
+    laborCostPerPack: 1000, targetMargin: 45,
     recipe: [
       { ingredientId: '2', quantity: 0.050 }, 
       { ingredientId: '5', quantity: 0.040 }, // Meat
@@ -99,7 +93,7 @@ export const DEFAULT_PRODUCTS = [
   },
   {
     id: 'p6', name: 'Empanada Operada (Pollo)', presentation: 'Paquete x5', unitsPerPack: 5,
-    unitsPerHour: 60, batchSize: 100, targetMargin: 45,
+    laborCostPerPack: 1000, targetMargin: 45,
     recipe: [
       { ingredientId: '2', quantity: 0.050 }, 
       { ingredientId: '6', quantity: 0.040 }, // Chicken
@@ -111,7 +105,7 @@ export const DEFAULT_PRODUCTS = [
   // --- PASTELITOS ---
   {
     id: 'p7', name: 'Pastelito Andino', presentation: 'Bolsa x10', unitsPerPack: 10,
-    unitsPerHour: 90, batchSize: 150, targetMargin: 35,
+    laborCostPerPack: 1500, targetMargin: 35,
     recipe: [
       { ingredientId: '2', quantity: 0.035 }, 
       { ingredientId: '5', quantity: 0.025 }, 
@@ -123,7 +117,7 @@ export const DEFAULT_PRODUCTS = [
   // --- MANDOCAS ---
   {
     id: 'p8', name: 'Mandocas Zulianas', presentation: 'Bolsa x20', unitsPerPack: 20,
-    unitsPerHour: 140, batchSize: 300, targetMargin: 40,
+    laborCostPerPack: 2000, targetMargin: 40,
     recipe: [
       { ingredientId: '8', quantity: 0.025 }, // Plantain
       { ingredientId: '2', quantity: 0.015 }, // Flour

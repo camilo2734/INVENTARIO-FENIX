@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Product, Ingredient } from '../types';
 import { Card } from './ui/Card';
 import { Plus, Trash2, Package, Settings } from 'lucide-react';
+import { formatCurrency } from '../constants';
 
 interface Props {
   products: Product[];
@@ -78,8 +79,8 @@ export const ProductsView: React.FC<Props> = ({ products, ingredients, setProduc
                  <span className="font-medium text-slate-900">{product.unitsPerPack}</span>
               </div>
               <div className="flex justify-between border-b border-slate-100 pb-2">
-                 <span>Prod. x Hora:</span>
-                 <span className="font-medium text-slate-900">{product.unitsPerHour}</span>
+                 <span>M.O. x Paquete:</span>
+                 <span className="font-medium text-slate-900">{formatCurrency(product.laborCostPerPack || 0)}</span>
               </div>
               <div className="flex justify-between">
                  <span>Margen Objetivo:</span>

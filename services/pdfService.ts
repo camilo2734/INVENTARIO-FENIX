@@ -3,18 +3,13 @@ import "jspdf-autotable";
 import { Product, CostBreakdown, Ingredient } from "../types";
 import { formatCurrency } from "../constants";
 
-// Extend jsPDF type to include autoTable
-interface jsPDFWithAutoTable extends jsPDF {
-  autoTable: (options: any) => void;
-  lastAutoTable: { finalY: number };
-}
-
 export const generateCostPDF = (
   product: Product,
   breakdown: CostBreakdown,
   ingredients: Ingredient[]
 ) => {
-  const doc = new jsPDF() as jsPDFWithAutoTable;
+  // Cast to any to handle jspdf-autotable plugin methods and avoid type inheritance issues
+  const doc: any = new jsPDF();
   const now = new Date();
   
   // -- HEADER --
@@ -129,10 +124,6 @@ export const generateCostPDF = (
   rowY += lineHeight;
   doc.text("Costo Mano de Obra:", col1, rowY);
   doc.text(formatCurrency(breakdown.laborCost), col2, rowY, { align: 'right' });
-
-  rowY += lineHeight;
-  doc.text("Costo Servicios/Indirectos:", col1, rowY);
-  doc.text(formatCurrency(breakdown.energyCost), col2, rowY, { align: 'right' });
 
   // Divider
   rowY += 2;
